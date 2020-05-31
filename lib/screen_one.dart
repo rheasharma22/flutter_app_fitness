@@ -1,8 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-//import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter_timer/flutter_timer.dart';
+import 'package:flutterappfitness/getLocation.dart';
 
 const kAppBarStyle = TextStyle(
   fontSize: 20.0,
@@ -29,6 +27,7 @@ class ScreenOne extends StatefulWidget {
 }
 
 class _ScreenOneState extends State<ScreenOne> {
+  getLocation loc = new getLocation();
   bool running = false;
   @override
   Widget build(BuildContext context) {
@@ -81,6 +80,7 @@ class _ScreenOneState extends State<ScreenOne> {
                 width: 195.0,
                 child: FlatButton(
                   onPressed: () {
+                    loc.fetchLocationData();
                     try {
                       if (running == false)
                         setState(() {
@@ -110,10 +110,12 @@ class _ScreenOneState extends State<ScreenOne> {
                     width: 195.0,
                     child: FlatButton(
                       onPressed: () {
-                        if (running == true)
-                          setState(() {
-                            running = false;
-                          });
+                        if (running == true) loc.pos.cancel();
+                        print(loc.location_data);
+                        setState(() {
+                          running = false;
+                          Navigator.pushNamed(context, '/map');
+                        });
                       },
                       child: Text(
                         "STOP",

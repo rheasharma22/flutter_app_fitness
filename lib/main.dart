@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterappfitness/MapView.dart';
+
 import 'screen_one.dart';
 
 void main() {
@@ -13,7 +15,11 @@ class FitnessApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xFF0A0E21),
       ),
-      home: ScreenOne(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => ScreenOne(),
+        '/map': (context) => Map_view(),
+      },
     );
   }
 }
