@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class TestMapPolyline extends StatefulWidget {
-  Map m;
-  TestMapPolyline({Key key, @required this.m}) : super(key: key);
+
+
 
   @override
-  _TestMapPolylineState createState() => _TestMapPolylineState(m);
+  _TestMapPolylineState createState() => _TestMapPolylineState();
 }
 
 class _TestMapPolylineState extends State<TestMapPolyline> {
-  Map f;
-  _TestMapPolylineState(this.f);
+
   final Set<Marker> _markers = {};
   final Set<Polyline> _polyline = {};
 
@@ -33,8 +32,8 @@ class _TestMapPolylineState extends State<TestMapPolyline> {
   void initState() {
     super.initState();
     //line segment 1
-    f.forEach((key, value) {
-      latlngSegment1.add(f[key]);
+    widget.m.forEach((key, value) {
+      latlngSegment1.add(widget.m[key]);
     });
 
 //    latlngSegment1.add(f[2]);
