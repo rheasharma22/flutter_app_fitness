@@ -18,7 +18,7 @@ class FitnessApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => ScreenOne(),
-        '/map': (context) => Map_view(),
+        '/map': (context) => TestMapPolyline(),
       },
     );
   }

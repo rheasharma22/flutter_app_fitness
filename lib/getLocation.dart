@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class getLocation {
   StreamSubscription<Position> pos;
@@ -17,9 +18,8 @@ class getLocation {
         .listen((Position position) {
       position == null
           ? 'Unknown'
-          : location_data[counter] = (position.latitude.toString() +
-              ', ' +
-              position.longitude.toString());
+          : location_data[counter] =
+              LatLng(position.latitude, position.longitude);
       counter++;
     });
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_timer/flutter_timer.dart';
+import 'package:flutterappfitness/MapView.dart';
 import 'package:flutterappfitness/getLocation.dart';
 
 const kAppBarStyle = TextStyle(
@@ -114,7 +115,13 @@ class _ScreenOneState extends State<ScreenOne> {
                         print(loc.location_data);
                         setState(() {
                           running = false;
-                          Navigator.pushNamed(context, '/map');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => TestMapPolyline(
+                                  m: loc.location_data,
+                                ),
+                              ));
                         });
                       },
                       child: Text(
