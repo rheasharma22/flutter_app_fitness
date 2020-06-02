@@ -51,16 +51,41 @@ class _TestMapPolylineState extends State<TestMapPolyline> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        //that needs a list<Polyline>
-        polylines: _polyline,
-        markers: _markers,
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: _lastMapPosition,
-          zoom: 18.0,
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 2,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15.0),
+                child: GoogleMap(
+                  //that needs a list<Polyline>
+                  polylines: _polyline,
+                  markers: _markers,
+                  onMapCreated: _onMapCreated,
+                  initialCameraPosition: CameraPosition(
+                    target: _lastMapPosition,
+                    zoom: 18.0,
+                  ),
+                  mapType: MapType.normal,
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: Colors.black26,
+                child: Column(
+                  children: <Widget>[
+                    Text("Distance:"),
+                    Text("Calories:"),
+                    Text("Time:")
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
-        mapType: MapType.normal,
       ),
     );
   }
