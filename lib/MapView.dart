@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'calculateDistance.dart' as dd;
+
 class TestMapPolyline extends StatefulWidget {
+  dd.dis obj = new dd.dis();
+  Map m;
+  Duration d;
 
-
+  TestMapPolyline({Key key, @required this.m, @required this.d})
+      : super(key: key);
 
   @override
   _TestMapPolylineState createState() => _TestMapPolylineState();
 }
 
 class _TestMapPolylineState extends State<TestMapPolyline> {
-
   final Set<Marker> _markers = {};
   final Set<Polyline> _polyline = {};
 
@@ -35,16 +40,6 @@ class _TestMapPolylineState extends State<TestMapPolyline> {
     widget.m.forEach((key, value) {
       latlngSegment1.add(widget.m[key]);
     });
-
-//    latlngSegment1.add(f[2]);
-//    latlngSegment1.add(f[3]);
-//    latlngSegment1.add(f[4]);
-
-//    //line segment 2
-//    latlngSegment2.add(_lat4);
-//    latlngSegment2.add(_lat5);
-//    latlngSegment2.add(_lat6);
-//    latlngSegment2.add(_lat1);
   }
 
   @override
@@ -76,9 +71,10 @@ class _TestMapPolylineState extends State<TestMapPolyline> {
                 color: Colors.black26,
                 child: Column(
                   children: <Widget>[
-                    Text("Distance:"),
+                    Text(
+                        "Distance:${(widget.obj.result(widget.m) * 0.62137).toStringAsFixed(2)} miles"),
                     Text("Calories:"),
-                    Text("Time:")
+                    Text("Time:${widget.d.inSeconds} seconds")
                   ],
                 ),
               ),
