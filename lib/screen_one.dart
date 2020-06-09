@@ -29,6 +29,7 @@ class ScreenOne extends StatefulWidget {
 
 class _ScreenOneState extends State<ScreenOne> {
   getLocation loc = new getLocation();
+  DateTime current_time;
   bool running = false;
   @override
   Widget build(BuildContext context) {
@@ -82,6 +83,7 @@ class _ScreenOneState extends State<ScreenOne> {
                 child: FlatButton(
                   onPressed: () {
                     loc.fetchLocationData();
+                    current_time = new DateTime.now();
                     try {
                       if (running == false)
                         setState(() {
@@ -113,14 +115,16 @@ class _ScreenOneState extends State<ScreenOne> {
                       onPressed: () {
                         if (running == true) loc.pos.cancel();
                         print(loc.location_data);
+                        Duration diff = DateTime.now().difference(current_time);
+                        print("$diff");
+
                         setState(() {
                           running = false;
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => TestMapPolyline(
-                                  m: loc.location_data,
-                                ),
+                                    m: loc.location_data, d: diff),
                               ));
                         });
                       },
