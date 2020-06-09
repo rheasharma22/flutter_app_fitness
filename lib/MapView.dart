@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterappfitness/screen_one.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+import 'home.dart';
 import 'calculateDistance.dart' as dd;
 
 const kFontStyle = TextStyle(
@@ -60,7 +60,7 @@ class _TestMapPolylineState extends State<TestMapPolyline> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Your information",
+          "My Running Statistics",
           style: kAppBarStyle,
         ),
       ),
@@ -68,12 +68,12 @@ class _TestMapPolylineState extends State<TestMapPolyline> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 80.0,
+              height: 40.0,
             ),
             Expanded(
               flex: 1,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(0.0),
+                borderRadius: BorderRadius.circular(10.0),
                 child: GoogleMap(
                   //that needs a list<Polyline>
                   polylines: _polyline,
@@ -90,16 +90,17 @@ class _TestMapPolylineState extends State<TestMapPolyline> {
             Expanded(
               flex: 1,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
                     height: 50.0,
                   ),
                   Container(
-                    width: 320.0,
+                    width: 390.0,
                     height: 120.0,
                     decoration: BoxDecoration(
                       color: Color(0x251919A2),
-                      borderRadius: BorderRadius.circular(35.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -109,7 +110,7 @@ class _TestMapPolylineState extends State<TestMapPolyline> {
                           style: kFontStyle,
                         ),
                         Text(
-                          "Calories: ",
+                          "Calories: 100 cal",
                           style: kFontStyle,
                         ),
                         Text(
@@ -119,18 +120,23 @@ class _TestMapPolylineState extends State<TestMapPolyline> {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   Container(
                     decoration: BoxDecoration(
-                      //color: Color(0xFFFE5728),
-                      //color: Color(0xFF19BC99),
-                      color: Color(0x251919A2),
+                      color: Colors.indigo,
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     margin: EdgeInsets.all(15.0),
                     padding: EdgeInsets.all(5.0),
                     width: 195.0,
                     child: FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          Navigator.popUntil(context, ModalRoute.withName('/'));
+                        });
+                      },
                       child: Text(
                         "HOME",
                         style: kButtonTextStyle,

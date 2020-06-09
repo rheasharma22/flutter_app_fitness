@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterappfitness/MapView.dart';
-
+import 'home.dart';
 import 'screen_one.dart';
 
 void main() {
@@ -17,7 +17,8 @@ class FitnessApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => ScreenOne(),
+        '/': (context) => Home(),
+        '/timer': (context) => ScreenOne(),
         '/map': (context) => TestMapPolyline(),
       },
     );
